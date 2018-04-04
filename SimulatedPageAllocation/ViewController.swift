@@ -133,20 +133,28 @@ class ViewController: UIViewController {
             
             for index in frameCodeIndices {
                 print("Removing Index from Code frame: ", index)
-                ram.RAM[index].isOccupied = false
-                ram.RAM[index].data = nil
-                frameLabels[index].text = "Free"
-                (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.darkGray
+                
+                UIView.transition(with: self.ramStackView.arrangedSubviews[index], duration: 0.35, options: .transitionCrossDissolve, animations: {
+                    self.ram.RAM[index].isOccupied = false
+                    self.ram.RAM[index].data = nil
+                    self.frameLabels[index].text = "Free"
+                    (self.ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    (self.ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.darkGray
+                    
+                }, completion: nil)
             }
             
             for index in framePageIndices {
                 print("Removing Index from Page frame: ", index)
-                ram.RAM[index].isOccupied = false
-                ram.RAM[index].data = nil
-                frameLabels[index].text = "Free"
-                (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.darkGray
+                
+                UIView.transition(with: self.ramStackView.arrangedSubviews[index], duration: 0.35, options: .transitionCrossDissolve, animations: {
+                    self.ram.RAM[index].isOccupied = false
+                    self.ram.RAM[index].data = nil
+                    self.frameLabels[index].text = "Free"
+                    (self.ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    (self.ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.darkGray
+                    
+                }, completion: nil)
             }
             
             process.removeFromRAM()
@@ -158,7 +166,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func findAvailableRAMFrames(forProcess process: ProcessData) {
+    private func findAvailableRAMFrames(forProcess process: ProcessData) {
         
         ram.addProcessToRam(withProcess: process)
         
@@ -171,19 +179,29 @@ class ViewController: UIViewController {
         var code = 0, data = 0
         
         for index in frameCodeIndices {
-            processDataTextView.text! += "Loaded Code \(code) of process \(process.processNumber) to frame \(index)\n"
-            updateRamView(withIndex: index, withString: "Code - \(code) of P\(process.processNumber)")
-            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = codeColors[process.processNumber % dataColors.count]
-            (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.white
-            code += 1
+
+            UIView.transition(with: self.ramStackView.arrangedSubviews[index], duration: 0.5, options: .transitionCrossDissolve, animations: {
+                
+                self.processDataTextView.text! += "Loaded Code \(code) of process \(process.processNumber) to frame \(index)\n"
+                self.updateRamView(withIndex: index, withString: "Code - \(code) of P\(process.processNumber)")
+                (self.ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = self.codeColors[process.processNumber % self.dataColors.count]
+                (self.ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.white
+                code += 1
+                
+            }, completion: nil)
         }
         
         for index in framePageIndices {
-            processDataTextView.text! += "Loaded Data  \(data) of process \(process.processNumber) to frame \(index)\n"
-            updateRamView(withIndex: index, withString: "Data - \(data) of P\(process.processNumber)")
-            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = dataColors[process.processNumber % dataColors.count]
-            (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.white
-            data += 1
+            
+            UIView.transition(with: self.ramStackView.arrangedSubviews[index], duration: 0.5, options: .transitionCrossDissolve, animations: {
+                
+                self.processDataTextView.text! += "Loaded Data  \(data) of process \(process.processNumber) to frame \(index)\n"
+                self.updateRamView(withIndex: index, withString: "Data - \(data) of P\(process.processNumber)")
+                (self.ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = self.self.dataColors[process.processNumber % self.dataColors.count]
+                (self.ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.white
+                data += 1
+                
+            }, completion: nil)
         }
     }
     
@@ -201,9 +219,14 @@ class ViewController: UIViewController {
     }
 }
 
+extension UIView {
+    func copyView<T: UIView>() -> T {
+        return NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
+    }
+}
+
 extension ViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let size = textField.text, let sizeDouble = Double(size) {
