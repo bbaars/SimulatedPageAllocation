@@ -27,6 +27,12 @@ class RAM {
         }
     }
     
+    public func changeFrameSize(withSize size: Double) {
+        for frame in 0..<RAM.count {
+            let _ = RAM[frame].setFrameSize(newSize: size)
+        }
+    }
+    
     public func addProcessToRam(withProcess process: ProcessData) {
         
         // check amount of frames needed vs. what's actually free

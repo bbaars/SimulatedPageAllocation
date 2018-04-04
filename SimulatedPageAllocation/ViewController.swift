@@ -157,7 +157,7 @@ extension ViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerVie
             reset()
             pages = nil
             pages = Processes(withFilename: currentFile)
-            let _ = ram.RAM[0].setFrameSize(newSize: sizeDouble)
+            ram.changeFrameSize(withSize: sizeDouble)
         }
        
         textField.resignFirstResponder()

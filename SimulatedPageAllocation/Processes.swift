@@ -112,7 +112,7 @@ class Processes {
         currentProcess = pageData
         return true
     }
-    
+        
     // returns the next process in our array without actually incrememnting to it
     public func getNext() -> ProcessData? {
         if currentIndex + 1 > (processes.count - 1) { return nil}
