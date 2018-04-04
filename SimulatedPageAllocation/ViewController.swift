@@ -26,8 +26,8 @@ class ViewController: UIViewController {
     private var testFiles: [String] = ["test1", "test2", "test3", "test4", "test5"]
     private var currentFile: String!
     
-    private var codeColors: [UIColor] = [#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1),#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1),#colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1),#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)]
-    private var dataColors: [UIColor] = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1),#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1),#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
+    private var codeColors: [UIColor] = [#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.5661509395, green: 0.007843137719, blue: 0.8549019694, alpha: 1),#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1),#colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1),#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1),#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1),#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)]
+    private var dataColors: [UIColor] = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1),#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1),#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1),#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)]
     
     private var lastHighlightedLine: String!
     
@@ -171,17 +171,17 @@ class ViewController: UIViewController {
         var code = 0, data = 0
         
         for index in frameCodeIndices {
-            processDataTextView.text! += "Loaded Code of process \(process.processNumber) to frame \(index)\n"
+            processDataTextView.text! += "Loaded Code \(code) of process \(process.processNumber) to frame \(index)\n"
             updateRamView(withIndex: index, withString: "Code - \(code) of P\(process.processNumber)")
-            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = codeColors[process.processNumber]
+            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = codeColors[process.processNumber % dataColors.count]
             (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.white
             code += 1
         }
         
         for index in framePageIndices {
-            processDataTextView.text! += "Loaded Data of process \(process.processNumber) to frame \(index)\n"
+            processDataTextView.text! += "Loaded Data  \(data) of process \(process.processNumber) to frame \(index)\n"
             updateRamView(withIndex: index, withString: "Data - \(data) of P\(process.processNumber)")
-            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = dataColors[process.processNumber]
+            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = dataColors[process.processNumber % dataColors.count]
             (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.white
             data += 1
         }
@@ -226,7 +226,6 @@ extension ViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerVie
         pages = Processes(withFilename: currentFile)
         processTextView.text = pages.textFileData
         reset()
-
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

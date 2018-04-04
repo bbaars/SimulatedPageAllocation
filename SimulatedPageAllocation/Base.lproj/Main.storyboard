@@ -310,11 +310,17 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                 </constraints>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="512" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xaj-2a-dkf">
-                                <rect key="frame" x="24" y="374" width="248" height="30"/>
+                                <rect key="frame" x="121" y="374" width="151" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frame Size:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oz-yc-OV5">
+                                <rect key="frame" x="24" y="377.5" width="89" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -322,6 +328,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                             <constraint firstItem="yKN-Mw-6UX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2Oq-NJ-DD2"/>
                             <constraint firstItem="Xaj-2a-dkf" firstAttribute="top" secondItem="1MX-MZ-vJ6" secondAttribute="bottom" constant="8" id="4e9-ek-blr"/>
                             <constraint firstItem="BB3-eZ-xpX" firstAttribute="trailing" secondItem="Iya-5e-5kj" secondAttribute="trailing" id="57e-35-Nd7"/>
+                            <constraint firstItem="Xaj-2a-dkf" firstAttribute="leading" secondItem="2Oz-yc-OV5" secondAttribute="trailing" constant="8" id="7BL-Mv-ztL"/>
                             <constraint firstItem="Iya-5e-5kj" firstAttribute="centerY" secondItem="KO8-uD-j7c" secondAttribute="centerY" id="8Q6-2u-iVG"/>
                             <constraint firstItem="jef-15-FIc" firstAttribute="leading" relation="lessThanOrEqual" secondItem="yKN-Mw-6UX" secondAttribute="trailing" constant="188" id="AZr-XX-OwO"/>
                             <constraint firstItem="hEg-5f-dHs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="EAq-DG-viV"/>
@@ -331,13 +338,14 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                             <constraint firstItem="yKN-Mw-6UX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Q4m-8F-zyr"/>
                             <constraint firstAttribute="bottom" secondItem="hEg-5f-dHs" secondAttribute="bottom" constant="8" id="TvM-Pg-sah"/>
                             <constraint firstItem="BB3-eZ-xpX" firstAttribute="leading" secondItem="KO8-uD-j7c" secondAttribute="leading" id="V2i-ks-HPt"/>
+                            <constraint firstItem="2Oz-yc-OV5" firstAttribute="centerY" secondItem="Xaj-2a-dkf" secondAttribute="centerY" id="Y3G-Tc-m1G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jef-15-FIc" secondAttribute="trailing" id="YCF-ig-keL"/>
                             <constraint firstItem="jef-15-FIc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="YhU-Fd-10Y"/>
                             <constraint firstItem="jef-15-FIc" firstAttribute="leading" secondItem="1MX-MZ-vJ6" secondAttribute="trailing" constant="120" id="Ys7-m3-lzD"/>
                             <constraint firstItem="BB3-eZ-xpX" firstAttribute="top" secondItem="Xaj-2a-dkf" secondAttribute="bottom" constant="8" id="Zwg-wO-8Pj"/>
                             <constraint firstItem="1MX-MZ-vJ6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="byS-jP-VoP"/>
                             <constraint firstItem="1MX-MZ-vJ6" firstAttribute="top" secondItem="yKN-Mw-6UX" secondAttribute="bottom" constant="8" id="dg5-N4-N3m"/>
-                            <constraint firstItem="Xaj-2a-dkf" firstAttribute="leading" secondItem="BB3-eZ-xpX" secondAttribute="leading" id="tg2-Cq-MoV"/>
+                            <constraint firstItem="2Oz-yc-OV5" firstAttribute="leading" secondItem="BB3-eZ-xpX" secondAttribute="leading" id="lYw-xp-hqv"/>
                             <constraint firstItem="KO8-uD-j7c" firstAttribute="top" secondItem="BB3-eZ-xpX" secondAttribute="bottom" constant="16" id="wpT-F4-oub"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jef-15-FIc" secondAttribute="bottom" constant="20" id="xEF-1Z-xlo"/>
                         </constraints>
