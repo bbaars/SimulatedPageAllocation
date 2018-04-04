@@ -66,9 +66,3 @@ class ViewFX: UIView {
         self.layer.rasterizationScale = UIScreen.main.scale
     }
 }
-
-/// ANIMATIONS
-extension ViewFX {
-    
-    
-}

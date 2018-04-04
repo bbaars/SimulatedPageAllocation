@@ -16,27 +16,45 @@ class ViewController: UIViewController {
     @IBOutlet var frameLabels: [UILabel]!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var ramStackView: UIStackView!
-    
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var textPickerView: UIPickerView!
+    @IBOutlet weak var frameSizeTextField: UITextField!
     // MARK: - Variables
     var pages: Processes!
     var ram: RAM!
     
-    var testFiles: [String] = ["test1", "test2", "test3", "test4", "test5"]
+    private var testFiles: [String] = ["test1", "test2", "test3", "test4", "test5"]
+    private var currentFile: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        currentFile = testFiles[0]
     
-        pages = Processes(withFilename: testFiles[0])
+        // Init our 'processes' with the associated file
+        pages = Processes(withFilename: currentFile)
+        
+        // create our RAM
         ram = RAM(sizeOfRam: frameLabels.count)
         
         resetRamLabels()
         nextButton.layer.cornerRadius = 5.0
+        resetButton.layer.cornerRadius = 5.0
         
         processTextView.text = pages.textFileData
         processDataTextView.text = ""
+        
+        textPickerView.delegate = self
+        textPickerView.dataSource = self
+        
+        frameSizeTextField.delegate = self
     }
     
     // MARK: - IBActions
+    @IBAction func resetButtonPressed(_ sender: Any) {
+        reset()
+    }
+    
     @IBAction func nextButtonPressed(_ sender: Any) {
         
         if !pages.currentProcess.isTerminated {
@@ -59,7 +77,16 @@ class ViewController: UIViewController {
         }
     }
     
-    func removeProcessFromRAM(process: ProcessData) {
+    private func reset() {
+    
+        ram.resetRAM()
+        pages.resetProcesses()
+        
+        processDataTextView.text = ""
+        resetRamLabels()
+    }
+    
+    private func removeProcessFromRAM(process: ProcessData) {
         
         if let processToBeRemoved = pages.getProcessFromProcessNumber(pid: process.processNumber) {
             
@@ -119,5 +146,46 @@ class ViewController: UIViewController {
             label.text = "Free"
         }
     }
+}
+
+extension ViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let size = textField.text, let sizeDouble = Double(size) {
+            reset()
+            pages = nil
+            pages = Processes(withFilename: currentFile)
+            let _ = ram.RAM[0].setFrameSize(newSize: sizeDouble)
+        }
+       
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if testFiles[row] == currentFile { return }
+        
+        currentFile = testFiles[row]
+        reset()
+        pages = nil
+        pages = Processes(withFilename: currentFile)
+        processTextView.text = pages.textFileData
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return testFiles[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return testFiles.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
 }
 

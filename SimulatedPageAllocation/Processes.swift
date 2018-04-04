@@ -8,6 +8,18 @@
 
 import Foundation
 
+// Type to store which type the 'Frame' is
+enum Type {
+    case data
+    case code
+    case empty
+}
+
+
+// Our Frame holds the frame size
+// whether or not it's currently occupied
+// and the data associated with it.
+// Also, the index (offset) it is in the frame array
 struct Frame {
     
     var frameSize = 512.0
@@ -16,6 +28,7 @@ struct Frame {
     var type: Type
     var data: ProcessData?
     
+    // Reset our frame by reseting all values
     public mutating func resetFrame(withIndex index: Int) {
         isOccupied = false
         self.index = index
@@ -23,6 +36,7 @@ struct Frame {
         data = nil
     }
     
+    // dynamically set the frame size
     public mutating func setFrameSize(newSize size: Double) {
         self.frameSize = size
     }
@@ -31,12 +45,18 @@ struct Frame {
 class Processes {
 
     private(set) var textFileData: String?
+    
+    // array of all our processes
     private(set) var processes = [ProcessData]()
     private var currentIndex = 0
+    
+    // our current process (starts at 0)
+    // and is incrememnted when the user clicks next
     public var currentProcess: ProcessData!
     
     init(withFilename file: String) {
         
+        // Load in our Text File
         if let path = Bundle.main.path(forResource: file, ofType: ".txt") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
@@ -44,6 +64,8 @@ class Processes {
                 textFileData = parsedData
                 var lines = parsedData.components(separatedBy: CharacterSet(charactersIn: "\n"))
                 lines.removeLast()
+                
+                // parse the lines
                 parseLines(withFileContents: lines)
 
             } catch {
@@ -57,6 +79,9 @@ class Processes {
     
     private func parseLines(withFileContents contents: [String]) {
         
+        // Each line creates a 'new process' and it's added
+        // to our process array
+        // process with -1 are set to 'terminated'
         for line in contents {
             var page: ProcessData
             var processLine = line.split(separator: Character(" "))
@@ -69,10 +94,17 @@ class Processes {
         }
     }
     
+    public func resetProcesses() {
+        currentIndex = 0
+        currentProcess = processes[0]
+    }
+    
+    // returns the process to be terminated by process number
     public func getProcessFromProcessNumber(pid: Int) -> ProcessData? {
         return processes.filter({$0.processNumber == pid && !$0.isTerminated}).first
     }
     
+    // incrememnt the variable to the next process in our array
     public func toNext() -> Bool {
         currentIndex += 1
         if currentIndex > (processes.count - 1) { return false }
@@ -81,6 +113,7 @@ class Processes {
         return true
     }
     
+    // returns the next process in our array without actually incrememnting to it
     public func getNext() -> ProcessData? {
         if currentIndex + 1 > (processes.count - 1) { return nil}
         return processes[currentIndex + 1]

@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum Type {
-    case data
-    case code
-    case empty
-}
-
 class ProcessData {
     
     var numOfDataPages: Int
@@ -28,11 +22,15 @@ class ProcessData {
     var codeLength: Int
     var dataLength: Int
     
+    
+    // return our data in a readable string format
     public func toString() -> String {
         return "Loading \(processNumber) into RAM: code=\(codeLength) (\(numOfCodePages) pages) data=\(dataLength) (\(numOfDataPages) pages)"
     }
     
     public func addFrameToPageTable(withFrame frame: Frame) {
+        
+        // adds the associated frame to our Page Table when it's loaded into ram
         if frame.type == .code {
             codePageTable[frame.index] = frame
             print("Loading Code frame from index: ", frame.index)
@@ -43,12 +41,15 @@ class ProcessData {
     }
     
     public func removeFromRAM() {
+        // Removes the Page Tables of our Code/Data
         self.codePageTable.removeAll()
         self.dataPageTable.removeAll()
     }
     
     public func queueProcessForRAM(withFrameSize size: Int) {
         
+        // Queue process for loading into RAM by finding the number of pages
+        // they will need
         let codePages = Int(ceil(Double(self.codeLength)/Double(size)))
         let dataPages = Int(ceil(Double(self.dataLength)/Double(size)))
         
