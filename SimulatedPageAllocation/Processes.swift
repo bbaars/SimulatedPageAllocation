@@ -45,6 +45,7 @@ struct Frame {
 class Processes {
 
     private(set) var textFileData: String?
+    private(set) var textFileLine: [String]?
     
     // array of all our processes
     private(set) var processes = [ProcessData]()
@@ -64,7 +65,6 @@ class Processes {
                 textFileData = parsedData
                 var lines = parsedData.components(separatedBy: CharacterSet(charactersIn: "\n"))
                 lines.removeLast()
-                
                 // parse the lines
                 parseLines(withFileContents: lines)
 
@@ -79,12 +79,15 @@ class Processes {
     
     private func parseLines(withFileContents contents: [String]) {
         
+        textFileLine = [String]()
+        
         // Each line creates a 'new process' and it's added
         // to our process array
         // process with -1 are set to 'terminated'
         for line in contents {
             var page: ProcessData
             var processLine = line.split(separator: Character(" "))
+            textFileLine?.append(line)
             if processLine.count > 2 {
                 page = ProcessData(numOfDataPages: 0, numOfCodePages: 0, codePageTable: [:], dataPageTable: [:], isTerminated: false, processNumber: Int(processLine[0])!, codeLength: Int(processLine[1])!, dataLength: Int(processLine[2])!)
             } else {
@@ -92,6 +95,10 @@ class Processes {
             }
             processes.append(page)
         }
+    }
+    
+    public func getLineForCurrentProcess() -> String? {
+        return textFileLine?[currentIndex]
     }
     
     public func resetProcesses() {

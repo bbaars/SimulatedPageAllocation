@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var processTextView: UITextView!
     @IBOutlet weak var processDataTextView: UITextView!
-    @IBOutlet var frameLabels: [UILabel]!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet var frameLabels: [UILabel]!
     @IBOutlet weak var ramStackView: UIStackView!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var textPickerView: UIPickerView!
@@ -25,6 +25,11 @@ class ViewController: UIViewController {
     
     private var testFiles: [String] = ["test1", "test2", "test3", "test4", "test5"]
     private var currentFile: String!
+    
+    private var codeColors: [UIColor] = [#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1),#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1),#colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1),#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)]
+    private var dataColors: [UIColor] = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1),#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1),#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
+    
+    private var lastHighlightedLine: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +53,9 @@ class ViewController: UIViewController {
         textPickerView.dataSource = self
         
         frameSizeTextField.delegate = self
+        
+        highlight(text: pages.getLineForCurrentProcess()!, forColor: UIColor.red)
+        lastHighlightedLine = pages.getLineForCurrentProcess()
     }
     
     // MARK: - IBActions
@@ -57,6 +65,10 @@ class ViewController: UIViewController {
     
     @IBAction func nextButtonPressed(_ sender: Any) {
         
+        if lastHighlightedLine != nil {
+            dehighlight(text: lastHighlightedLine)
+        }
+        
         if !pages.currentProcess.isTerminated {
             pages.currentProcess.queueProcessForRAM(withFrameSize: Int(ram.RAM[0].frameSize))
             
@@ -65,7 +77,11 @@ class ViewController: UIViewController {
             
             if !pages.toNext() {
                processDataTextView.text! += "End of Program 0\n"
+            } else {
+                highlight(text: pages.getLineForCurrentProcess()!, forColor: UIColor.red)
+                lastHighlightedLine = pages.getLineForCurrentProcess()
             }
+
         } else {
             print(pages.currentProcess.toString())
             print("Attempting to remove process: ", pages.currentProcess.processNumber)
@@ -73,17 +89,37 @@ class ViewController: UIViewController {
             
             if !pages.toNext() {
                 processDataTextView.text! += "End of Program 0\n"
-            }                
+            } else {
+                highlight(text: pages.getLineForCurrentProcess()!, forColor: UIColor.red)
+                lastHighlightedLine = pages.getLineForCurrentProcess()
+            }
         }
+    }
+    
+    private func highlight(text: String, forColor color: UIColor) {
+        let range = (processTextView.text as NSString).range(of: text)
+        let string = NSMutableAttributedString(attributedString: processTextView.attributedText)
+        string.addAttributes([NSAttributedStringKey.foregroundColor: color], range: range)
+        processTextView.attributedText = string
+    }
+    
+    private func dehighlight(text: String) {
+        let range = (processTextView.text as NSString).range(of: text)
+        let string = NSMutableAttributedString(attributedString: processTextView.attributedText)
+        string.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.darkGray], range: range)
+        processTextView.attributedText = string
     }
     
     private func reset() {
     
         ram.resetRAM()
         pages.resetProcesses()
-        
+        dehighlight(text: processTextView.text)
         processDataTextView.text = ""
         resetRamLabels()
+        
+        highlight(text: pages.getLineForCurrentProcess()!, forColor: UIColor.red)
+        lastHighlightedLine = pages.getLineForCurrentProcess()
     }
     
     private func removeProcessFromRAM(process: ProcessData) {
@@ -100,6 +136,8 @@ class ViewController: UIViewController {
                 ram.RAM[index].isOccupied = false
                 ram.RAM[index].data = nil
                 frameLabels[index].text = "Free"
+                (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.darkGray
             }
             
             for index in framePageIndices {
@@ -107,6 +145,8 @@ class ViewController: UIViewController {
                 ram.RAM[index].isOccupied = false
                 ram.RAM[index].data = nil
                 frameLabels[index].text = "Free"
+                (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.darkGray
             }
             
             process.removeFromRAM()
@@ -122,17 +162,28 @@ class ViewController: UIViewController {
         
         ram.addProcessToRam(withProcess: process)
         
-        let frameCodeIndices = Array(process.codePageTable.keys)
-        let framePageIndices = Array(process.dataPageTable.keys)
+        var frameCodeIndices = Array(process.codePageTable.keys)
+        var framePageIndices = Array(process.dataPageTable.keys)
+        
+        frameCodeIndices.sort(by: {$1 > $0})
+        framePageIndices.sort(by: {$1 > $0})
+        
+        var code = 0, data = 0
         
         for index in frameCodeIndices {
             processDataTextView.text! += "Loaded Code of process \(process.processNumber) to frame \(index)\n"
-            updateRamView(withIndex: index, withString: "Code - \(index) of P\(process.processNumber)")
+            updateRamView(withIndex: index, withString: "Code - \(code) of P\(process.processNumber)")
+            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = codeColors[process.processNumber]
+            (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.white
+            code += 1
         }
         
         for index in framePageIndices {
             processDataTextView.text! += "Loaded Data of process \(process.processNumber) to frame \(index)\n"
-            updateRamView(withIndex: index, withString: "Data - \(index) of P\(process.processNumber)")
+            updateRamView(withIndex: index, withString: "Data - \(data) of P\(process.processNumber)")
+            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = dataColors[process.processNumber]
+            (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.white
+            data += 1
         }
     }
     
@@ -142,8 +193,10 @@ class ViewController: UIViewController {
     
     
     private func resetRamLabels() {
-        for label in frameLabels {
+        for (index, label) in frameLabels.enumerated() {
             label.text = "Free"
+            (ramStackView.arrangedSubviews[index] as? ViewFX)?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            (ramStackView.arrangedSubviews[index].subviews[0] as? UILabel)?.textColor = UIColor.darkGray
         }
     }
 }
@@ -154,10 +207,10 @@ extension ViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerVie
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let size = textField.text, let sizeDouble = Double(size) {
-            reset()
             pages = nil
             pages = Processes(withFilename: currentFile)
             ram.changeFrameSize(withSize: sizeDouble)
+                        reset()
         }
        
         textField.resignFirstResponder()
@@ -169,10 +222,11 @@ extension ViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerVie
         if testFiles[row] == currentFile { return }
         
         currentFile = testFiles[row]
-        reset()
         pages = nil
         pages = Processes(withFilename: currentFile)
         processTextView.text = pages.textFileData
+        reset()
+
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -186,6 +240,4 @@ extension ViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerVie
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
 }
-
