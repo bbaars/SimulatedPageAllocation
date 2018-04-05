@@ -62,6 +62,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="5s2-33-K35" firstAttribute="centerX" secondItem="lIg-o2-fZ3" secondAttribute="centerX" id="0KN-0Y-iKY"/>
                                             <constraint firstItem="5s2-33-K35" firstAttribute="centerY" secondItem="lIg-o2-fZ3" secondAttribute="centerY" id="18t-5W-YKf"/>
@@ -77,8 +78,11 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="5fh-w4-7bG" appends="YES" id="R63-1q-iQ5"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFX-zC-Zj1" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFX-zC-Zj1" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="99" width="240" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adg-Ch-YNc">
@@ -89,6 +93,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="Adg-Ch-YNc" firstAttribute="centerX" secondItem="uFX-zC-Zj1" secondAttribute="centerX" id="6kX-pj-Wpe"/>
                                             <constraint firstItem="Adg-Ch-YNc" firstAttribute="centerY" secondItem="uFX-zC-Zj1" secondAttribute="centerY" id="h6n-OA-0LN"/>
@@ -104,8 +109,11 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Uqs-Pj-oZr" appends="YES" id="Iex-Wg-uNk"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOH-Mo-Uen" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOH-Mo-Uen" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="198" width="240" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45b-HM-TBz">
@@ -116,6 +124,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="45b-HM-TBz" firstAttribute="centerX" secondItem="HOH-Mo-Uen" secondAttribute="centerX" id="W7I-3o-2yA"/>
                                             <constraint firstItem="45b-HM-TBz" firstAttribute="centerY" secondItem="HOH-Mo-Uen" secondAttribute="centerY" id="aHs-0j-ZUn"/>
@@ -131,8 +140,11 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="NPQ-2c-7BM" appends="YES" id="YLX-b4-4LT"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0r-4j-Hoo" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0r-4j-Hoo" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="297" width="240" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUS-2V-2jw">
@@ -143,6 +155,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="VUS-2V-2jw" firstAttribute="centerY" secondItem="Z0r-4j-Hoo" secondAttribute="centerY" id="PXR-yO-dhR"/>
                                             <constraint firstItem="VUS-2V-2jw" firstAttribute="centerX" secondItem="Z0r-4j-Hoo" secondAttribute="centerX" id="n8j-BX-0y5"/>
@@ -158,8 +171,11 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="yOS-7k-YE1" appends="YES" id="m4u-Ib-UI3"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crd-gk-oh9" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
+                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crd-gk-oh9" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="396" width="240" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEj-AI-5F2">
@@ -170,6 +186,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="AEj-AI-5F2" firstAttribute="centerY" secondItem="crd-gk-oh9" secondAttribute="centerY" id="MYt-da-FWI"/>
                                             <constraint firstItem="AEj-AI-5F2" firstAttribute="centerX" secondItem="crd-gk-oh9" secondAttribute="centerX" id="eec-7T-pNy"/>
@@ -185,8 +202,11 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="3o3-jx-Mj1" appends="YES" id="EGA-EC-qJf"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvx-nP-25c" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
+                                    <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvx-nP-25c" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="495" width="240" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGw-PQ-z3R">
@@ -197,6 +217,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="EGw-PQ-z3R" firstAttribute="centerY" secondItem="dvx-nP-25c" secondAttribute="centerY" id="drm-Gv-Se9"/>
                                             <constraint firstItem="EGw-PQ-z3R" firstAttribute="centerX" secondItem="dvx-nP-25c" secondAttribute="centerX" id="zxv-XM-gvv"/>
@@ -212,8 +233,11 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Wbt-UK-f1l" appends="YES" id="IIc-Kq-PG8"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lps-WC-FUL" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
+                                    <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lps-WC-FUL" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="594" width="240" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mK-im-skf">
@@ -224,6 +248,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="2mK-im-skf" firstAttribute="centerY" secondItem="lps-WC-FUL" secondAttribute="centerY" id="2MK-IJ-qa0"/>
                                             <constraint firstItem="2mK-im-skf" firstAttribute="centerX" secondItem="lps-WC-FUL" secondAttribute="centerX" id="hLe-CO-TYN"/>
@@ -239,8 +264,11 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="dsq-e3-7rb" appends="YES" id="n4G-Y3-Dny"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkI-Sh-19M" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
+                                    <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkI-Sh-19M" customClass="ViewFX" customModule="SimulatedPageAllocation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="693" width="240" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfW-mD-FDs">
@@ -251,6 +279,7 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="zfW-mD-FDs" firstAttribute="centerX" secondItem="FkI-Sh-19M" secondAttribute="centerX" id="Y1d-Tz-K0Q"/>
                                             <constraint firstItem="zfW-mD-FDs" firstAttribute="centerY" secondItem="FkI-Sh-19M" secondAttribute="centerY" id="uw3-T9-ePY"/>
@@ -266,6 +295,9 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="q2Z-lJ-gal" appends="YES" id="DBj-mi-tKx"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -370,6 +402,46 @@ Load Data page 1 of process 1 to frame 6 End of Program 0</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5fh-w4-7bG">
+                    <connections>
+                        <action selector="ProcessViewPressed:" destination="BYZ-38-t0r" id="apD-Ca-5M5"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Uqs-Pj-oZr">
+                    <connections>
+                        <action selector="ProcessViewPressed:" destination="BYZ-38-t0r" id="rtJ-FG-0u5"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="NPQ-2c-7BM">
+                    <connections>
+                        <action selector="ProcessViewPressed:" destination="BYZ-38-t0r" id="pNS-ZK-VrX"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="yOS-7k-YE1">
+                    <connections>
+                        <action selector="ProcessViewPressed:" destination="BYZ-38-t0r" id="zqj-Z9-Lds"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="3o3-jx-Mj1">
+                    <connections>
+                        <action selector="ProcessViewPressed:" destination="BYZ-38-t0r" id="2hz-er-WMa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Wbt-UK-f1l">
+                    <connections>
+                        <action selector="ProcessViewPressed:" destination="BYZ-38-t0r" id="fVz-KK-b3i"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="dsq-e3-7rb">
+                    <connections>
+                        <action selector="ProcessViewPressed:" destination="BYZ-38-t0r" id="9mx-2y-WmN"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="q2Z-lJ-gal">
+                    <connections>
+                        <action selector="ProcessViewPressed:" destination="BYZ-38-t0r" id="zCw-dA-kMg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.5234375" y="117.27672035139091"/>
         </scene>

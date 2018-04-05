@@ -96,6 +96,36 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func ProcessViewPressed(_ sender: UITapGestureRecognizer) {
+        
+        if let view = sender.view {
+            let tag = view.tag
+            let selectedFrame = ram.RAM[tag]
+        
+            if let data = selectedFrame.data {
+                processDataTextView.text = processDataTextView.text + """
+                \n
+                P\(data.processNumber) page table(s):
+                \t\t   Page \t   Frame\n
+                """
+                
+                for (key, value) in data.codePageTable.sorted(by: {$0.0 < $1.0}) {
+                    processDataTextView.text = processDataTextView.text + """
+                    Code\t\t \(key)\t\t\(value.index)\n
+                    """
+                }
+                
+                for tableData in data.dataPageTable {
+                    processDataTextView.text = processDataTextView.text + """
+                    Data\t\t \(tableData.key)\t\t\(tableData.value.index)\n
+                    """
+                }
+            }
+        }
+    }
+    
+    
     private func highlight(text: String, forColor color: UIColor) {
         let range = (processTextView.text as NSString).range(of: text)
         let string = NSMutableAttributedString(attributedString: processTextView.attributedText)
