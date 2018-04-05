@@ -105,7 +105,6 @@ class ViewController: UIViewController {
         
             if let data = selectedFrame.data {
                 processDataTextView.text = processDataTextView.text + """
-                \n
                 P\(data.processNumber) page table(s):
                 \t\t   Page \t   Frame\n
                 """
