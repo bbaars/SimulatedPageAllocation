@@ -1,6 +1,8 @@
 # Simulated Page Allocation Manager (SPAM)
 
+<img src="https://github.com/bbaars/SimulatedPageAllocation/blob/master/screenshot.png" height = "600">
 
+## Requirements
 Write a program that simulates the operation of a binary executable loader on a system that uses paging mechanism to manage its memory. The simulated hardware has the following characteristics:
 * 4K bytes of physical RAM
 * page/frame size of 512 bytes
